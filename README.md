@@ -5,7 +5,15 @@ The goal is to provide handy resources for quickly solving coding challenges or 
 
 ## Python ecosystem
 
+## Package managers
+
+* [`conda` - package manager](TODO)
 * [`uv` - package manager](https://htmlpreview.github.io/?https://github.com/stefansimik/dev_guides/blob/main/uv/uv_quick_reference.html)
 
+## Apps
+
+* [`jupyterlab`](TODO)
+
 ## Trading
-* [Databento - market data provider](https://htmlpreview.github.io/?https://github.com/stefansimik/dev_guides/blob/main/databento/databento_quick_reference.html)
+
+* [`Databento` - market data provider](https://htmlpreview.github.io/?https://github.com/stefansimik/dev_guides/blob/main/databento/databento_quick_reference.html)
