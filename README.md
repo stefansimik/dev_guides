@@ -13,7 +13,7 @@ The goal is to provide handy resources for quickly solving coding challenges or 
 ## Apps and tools
 
 * [`jupyterlab`](https://github.com/stefansimik/dev_guides/blob/main/jupyterlab/jupyterlab_quick_reference.md)
-* [`pdf` - python debugger](* [`jupyterlab`](https://github.com/stefansimik/dev_guides/blob/main/pdb/pdb_quick_reference.md)
+* [`pdf` - python debugger](https://github.com/stefansimik/dev_guides/blob/main/pdb/pdb_quick_reference.md)
 
 ## Trading
 
