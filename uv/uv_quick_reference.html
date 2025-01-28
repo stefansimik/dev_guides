@@ -3130,9 +3130,17 @@ vertical-align: -.125em;
   <ul class="collapse">
   <li><a href="#sync" id="toc-sync" class="nav-link" data-scroll-target="#sync"><span class="header-section-number">9.1</span> sync</a></li>
   <li><a href="#lock" id="toc-lock" class="nav-link" data-scroll-target="#lock"><span class="header-section-number">9.2</span> lock</a></li>
-  <li><a href="#tree" id="toc-tree" class="nav-link" data-scroll-target="#tree"><span class="header-section-number">9.3</span> tree</a></li>
+  <li><a href="#pip-list" id="toc-pip-list" class="nav-link" data-scroll-target="#pip-list"><span class="header-section-number">9.3</span> pip list</a></li>
+  <li><a href="#tree" id="toc-tree" class="nav-link" data-scroll-target="#tree"><span class="header-section-number">9.4</span> tree</a></li>
   </ul></li>
   <li><a href="#env-variables" id="toc-env-variables" class="nav-link" data-scroll-target="#env-variables"><span class="header-section-number">10</span> Env variables</a></li>
+  <li><a href="#custom-package-indexes" id="toc-custom-package-indexes" class="nav-link" data-scroll-target="#custom-package-indexes"><span class="header-section-number">11</span> Custom Package Indexes</a>
+  <ul class="collapse">
+  <li><a href="#configuration-1" id="toc-configuration-1" class="nav-link" data-scroll-target="#configuration-1"><span class="header-section-number">11.1</span> Configuration</a></li>
+  <li><a href="#multiple-indexes" id="toc-multiple-indexes" class="nav-link" data-scroll-target="#multiple-indexes"><span class="header-section-number">11.2</span> Multiple Indexes</a></li>
+  <li><a href="#index-priority" id="toc-index-priority" class="nav-link" data-scroll-target="#index-priority"><span class="header-section-number">11.3</span> Index Priority</a></li>
+  <li><a href="#usage-with-commands" id="toc-usage-with-commands" class="nav-link" data-scroll-target="#usage-with-commands"><span class="header-section-number">11.4</span> Usage with Commands</a></li>
+  </ul></li>
   </ul>
 </nav>
 </div>
@@ -3728,8 +3736,39 @@ vertical-align: -.125em;
 </ul>
 <p>Note: While <code>uv lock</code> creates the dependency plan, use <code>uv sync</code> to actually install the packages in your environment.</p>
 </section>
-<section id="tree" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="tree"><span class="header-section-number">9.3</span> tree</h2>
+<section id="pip-list" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="pip-list"><span class="header-section-number">9.3</span> pip list</h2>
+<p>The <code>uv pip list</code> command shows all packages installed in your current virtual environment.</p>
+<p>When you run <code>uv pip list</code>, it displays:</p>
+<ul>
+<li>A list of all installed Python packages</li>
+<li>Their current versions</li>
+<li>Organized in a clear, tabular format</li>
+</ul>
+<p>For example:</p>
+<pre><code>Package      Version
+------------ -------
+flask        3.0.0
+requests     2.31.0
+urllib3      2.2.0
+werkzeug     3.0.1</code></pre>
+<p>Common options:</p>
+<ul>
+<li><code>uv pip list --outdated</code> - Show packages that have updates available</li>
+<li><code>uv pip list --not-required</code> - Show packages that aren’t direct dependencies</li>
+<li><code>uv pip list --format json</code> - Output in JSON format for scripting</li>
+</ul>
+<p>This command is useful when:</p>
+<ul>
+<li>Checking what’s currently installed</li>
+<li>Verifying package versions</li>
+<li>Auditing your environment</li>
+<li>Identifying outdated packages</li>
+</ul>
+<p>Note: This command shows the actual state of your virtual environment, while <code>uv tree</code> provides a hierarchical view of dependencies.</p>
+</section>
+<section id="tree" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="tree"><span class="header-section-number">9.4</span> tree</h2>
 <p>The <code>uv tree</code> command displays a visual representation of your project’s dependency tree.</p>
 <p>When you run <code>uv tree</code>, it shows: * All installed packages in your environment * Their dependencies indented beneath them * Version numbers for each package * Optional markers like development dependencies [dev]</p>
 <p>For example:</p>
@@ -3760,6 +3799,55 @@ requests==2.31.0
 <li><code>uv run --env-file .env example.py</code> -see parameter <code>--env-file .env</code>, which loads env variables from <code>.env</code> file</li>
 <li>set the <code>UV_ENV_FILE</code> environment variable to load a <code>.env</code> file from any dedicated location</li>
 </ul>
+</section>
+<section id="custom-package-indexes" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Custom Package Indexes</h1>
+<p>Detailed docs: <a href="https://docs.astral.sh/uv/configuration/files/#package-indexes">https://docs.astral.sh/uv/configuration/files/#package-indexes</a></p>
+<p>UV supports configuring custom package indexes in your project configuration files (<code>uv.toml</code> or <code>pyproject.toml</code>). This is useful when you need to:</p>
+<ul>
+<li>Use private PyPI repositories</li>
+<li>Access packages from internal company repositories</li>
+<li>Work with packages hosted on custom servers</li>
+</ul>
+<section id="configuration-1" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="configuration-1"><span class="header-section-number">11.1</span> Configuration</h2>
+<p>Add custom package indexes in your <code>pyproject.toml</code> or <code>uv.toml</code> file using the following format:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[[tool.uv.index]]</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">&quot;custom_index_name&quot;</span>    <span class="co"># Unique name for the index</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="dt">url</span> <span class="op">=</span> <span class="st">&quot;https://your.index/simple&quot;</span>  <span class="co"># URL of the package index</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Example:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[[tool.uv.index]]</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">&quot;nautilus_pypi&quot;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dt">url</span> <span class="op">=</span> <span class="st">&quot;https://packages.nautechsystems.io/simple&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="multiple-indexes" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="multiple-indexes"><span class="header-section-number">11.2</span> Multiple Indexes</h2>
+<p>You can configure multiple custom indexes:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[[tool.uv.index]]</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">&quot;company_pypi&quot;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="dt">url</span> <span class="op">=</span> <span class="st">&quot;https://pypi.company.com/simple&quot;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">[[tool.uv.index]]</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">&quot;third_party_pypi&quot;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="dt">url</span> <span class="op">=</span> <span class="st">&quot;https://packages.third-party.com/simple&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="index-priority" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="index-priority"><span class="header-section-number">11.3</span> Index Priority</h2>
+<p>UV searches for packages in the following order: 1. Custom indexes in the order they are defined in the configuration file 2. The default PyPI index (unless disabled)</p>
+<p>To use only custom indexes and disable PyPI:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[tool.uv]</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="dt">default-index</span> <span class="op">=</span> <span class="cn">false</span>  <span class="co"># Disables the default PyPI index</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="usage-with-commands" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="usage-with-commands"><span class="header-section-number">11.4</span> Usage with Commands</h2>
+<p>Once configured, custom indexes are automatically used with all UV commands:</p>
+<ul>
+<li><code>uv add package-name</code></li>
+<li><code>uv sync</code></li>
+<li><code>uv pip install package-name</code></li>
+</ul>
+<p>No additional flags are needed - UV will check all configured indexes when resolving dependencies.</p>
+</section>
 </section>
 
 </main>
