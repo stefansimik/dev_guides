@@ -3797,8 +3797,19 @@ requests==2.31.0
 ├── charset-normalizer==3.3.2
 ├── idna==3.6
 └── urllib3==2.2.0</code></pre>
-<p>You can enhance the output with flags: * <code>uv tree --with-dev</code> - Include development dependencies * <code>uv tree &lt;package&gt;</code> - Show the tree for a specific package * <code>uv tree --json</code> - Output in JSON format for programmatic use</p>
-<p>This command is useful when: * Understanding package relationships in your project * Debugging dependency conflicts * Identifying which top-level packages bring in specific dependencies * Auditing your environment’s package structure</p>
+<p>You can enhance the output with flags:</p>
+<ul>
+<li><code>uv tree --with-dev</code> - Include development dependencies</li>
+<li><code>uv tree &lt;package&gt;</code> - Show the tree for a specific package</li>
+<li><code>uv tree --json</code> - Output in JSON format for programmatic use</li>
+</ul>
+<p>This command is useful when:</p>
+<ul>
+<li>Understanding package relationships in your project</li>
+<li>Debugging dependency conflicts</li>
+<li>Identifying which top-level packages bring in specific dependencies</li>
+<li>Auditing your environment’s package structure</li>
+</ul>
 <p>Note: Unlike <code>uv lock</code> which works with planned dependencies, <code>uv tree</code> shows currently installed packages in your environment.</p>
 </section>
 </section>
