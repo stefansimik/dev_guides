@@ -3726,7 +3726,13 @@ vertical-align: -.125em;
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;requests&gt;=2.28.0&quot;</span><span class="op">,</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;flask&gt;=2.0.0&quot;</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>When you run</strong> <code>uv lock</code>, it: 1. Reads your base dependencies from <code>pyproject.toml</code> 2. Resolves the complete dependency tree (including dependencies of dependencies) 3. Determines compatible versions for all packages 4. Writes exact versions to <code>uv.lock</code></p>
+<p><strong>When you run</strong> <code>uv lock</code>, it:</p>
+<ol type="1">
+<li>Reads your base dependencies from <code>pyproject.toml</code></li>
+<li>Resolves the complete dependency tree (including dependencies of dependencies)</li>
+<li>Determines compatible versions for all packages</li>
+<li>Writes exact versions to <code>uv.lock</code></li>
+</ol>
 <p>For example, your <code>uv.lock</code> will include precise versions not just for <code>requests</code> and <code>flask</code>, but also for their dependencies like <code>urllib3</code> and <code>werkzeug</code>. This ensures consistent environments across all installations.</p>
 <p><strong>You should run</strong> <code>uv lock</code> when:</p>
 <ul>
@@ -3770,7 +3776,13 @@ werkzeug     3.0.1</code></pre>
 <section id="tree" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="tree"><span class="header-section-number">9.4</span> tree</h2>
 <p>The <code>uv tree</code> command displays a visual representation of your project’s dependency tree.</p>
-<p>When you run <code>uv tree</code>, it shows: * All installed packages in your environment * Their dependencies indented beneath them * Version numbers for each package * Optional markers like development dependencies [dev]</p>
+<p>When you run <code>uv tree</code>, it shows:</p>
+<ul>
+<li>All installed packages in your environment</li>
+<li>Their dependencies indented beneath them</li>
+<li>Version numbers for each package</li>
+<li>Optional markers like development dependencies [dev]</li>
+</ul>
 <p>For example:</p>
 <pre><code>flask==3.0.0
 ├── blinker==1.7.0
