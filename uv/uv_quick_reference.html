@@ -3265,7 +3265,7 @@ vertical-align: -.125em;
 <ul>
 <li><code>uv python list</code>
 <ul>
-<li>Shows Python versions available through uv, including:
+<li>Shows Python versions (for current OS only), that areavailable through <code>uv</code>, including:
 <ol type="1">
 <li><strong>Already installed versions:</strong>
 <ul>
@@ -3292,6 +3292,14 @@ vertical-align: -.125em;
 <li>Managing multiple Python versions in your development environment</li>
 </ul></li>
 </ul></li>
+<li><code>uv python list --all-versions</code>
+<ul>
+<li>Shows available Python versions for all platforms</li>
+</ul></li>
+<li><code>uv python list --only-installed</code>
+<ul>
+<li>Excludes downloadable Python versions and shows only installed versions</li>
+</ul></li>
 </ul>
 </section>
 <section id="install-python-version" class="level2" data-number="3.2">
@@ -3314,8 +3322,10 @@ vertical-align: -.125em;
 <ul>
 <li><code>uv python install 3.12</code> - installs latest 3.12.x release</li>
 <li><code>uv python install 3.12.1</code> - installs exact version</li>
-<li><code>uv python install --list 3.12</code> - shows available 3.12.x versions</li>
-<li><code>uv python install --reinstall 3.12</code> - forces reinstallation</li>
+<li><code>uv python install --reinstall</code>
+<ul>
+<li>This will reinstall all previously installed Python versions. Improvements are constantly being added to the Python distributions, so reinstalling may resolve bugs even if the Python version does not change.</li>
+</ul></li>
 </ul></li>
 <li>What gets installed:
 <ul>
@@ -3587,7 +3597,13 @@ vertical-align: -.125em;
 <li>Maintains proper environment context</li>
 </ul></li>
 </ol>
-<p><strong>Common Options:</strong> * <code>uv run example.py --arg1 value1</code> - pass arguments to script * <code>uv run -m pytest</code> - run a module (like pytest) * <code>uv run --env-file .env example.py</code> - load environment variables * <code>uv run --python 3.11 example.py</code> - specify Python version</p>
+<p><strong>Common Options:</strong></p>
+<ul>
+<li><code>uv run example.py --arg1 value1</code> - pass arguments to script</li>
+<li><code>uv run -m pytest</code> - run a module (like pytest)</li>
+<li><code>uv run --env-file .env example.py</code> - load environment variables</li>
+<li><code>uv run --python 3.11 example.py</code> - specify Python version</li>
+</ul>
 <p><strong>Equivalent Manual Steps:</strong></p>
 <table class="caption-top table">
 <colgroup>
